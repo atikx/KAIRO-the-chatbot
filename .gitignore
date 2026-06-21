@@ -1,0 +1,35 @@
+docker-compose.yml
+./.claude
+
+# Node
+node_modules/
+npm-debug.log*
+pnpm-lock.yaml
+
+# Env files (IMPORTANT)
+.env
+.env.*
+!.env.example
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude
+.claude
+
+# Build
+dist/
+build/
+.next/

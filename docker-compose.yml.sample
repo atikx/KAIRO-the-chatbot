@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  go-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: kairo-server
+    ports:
+      - "4242:4242"
+    volumes:
+      - sqlite-data:/app/db
+    environment:
+      REDIS_ADDR: redis:6379
+      API_KEY: "Your open router api key"
+      ADMIN_KEY: "Your admin secret"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7
+    container_name: kairo-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  sqlite-data:
