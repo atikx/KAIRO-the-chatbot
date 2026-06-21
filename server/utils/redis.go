@@ -18,19 +18,25 @@ var (
 
 // ---------- INIT ----------
 func init() {
-	redisAddr := os.Getenv("REDIS_ADDR")
-	if redisAddr == "" {
-		redisAddr = "localhost:6379" // fallback for local dev
+	redisURL := os.Getenv("REDIS_URL")
+
+	if redisURL == "" {
+		redisURL = "redis://localhost:6379"
 	}
 
-	rdb = redis.NewClient(&redis.Options{
-		Addr: redisAddr,
-	})
+	opt, err := redis.ParseURL(redisURL)
+	if err != nil {
+		log.Fatal("Invalid Redis URL:", err)
+	}
 
-	_, err := rdb.Ping(ctx).Result()
+	rdb = redis.NewClient(opt)
+
+	_, err = rdb.Ping(ctx).Result()
 	if err != nil {
 		log.Fatal("Redis connection failed:", err)
 	}
+
+	log.Println("Connected to Redis")
 }
 
 // ---------- GET MESSAGES ----------

@@ -102,7 +102,12 @@ func main() {
 
 	// -----------------------
 
-	err := http.ListenAndServe(":4242", router)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "4242"
+	}
+
+	err := http.ListenAndServe(":"+port, router)
 	if err != nil {
 		panic(err)
 	}
