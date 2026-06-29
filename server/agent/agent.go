@@ -98,7 +98,7 @@ func FindAnswer(query string, contexts []string, oldMsgs []structs.Message) (str
 	defer cancel()
 
 	resp, err := client.Responses.New(ctx, responses.ResponseNewParams{
-		Model: "openai/gpt-4o-mini",
+		Model: "openai/gpt-4o-nano",
 		Input: responses.ResponseNewParamsInputUnion{
 			OfString: param.NewOpt(sb.String()),
 		},
