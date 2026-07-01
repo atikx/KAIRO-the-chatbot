@@ -33,3 +33,7 @@ Thumbs.db
 dist/
 build/
 .next/
+
+
+# SQLite database
+server/db/database.db

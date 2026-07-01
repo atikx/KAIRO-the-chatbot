@@ -43,6 +43,7 @@ func createTable() {
 	CREATE INDEX IF NOT EXISTS idx_chunks_source_index ON chunks(source, chunk_index);
 `
 
+
 	_, err := DB.Exec(query)
 	if err != nil {
 		panic(err)
